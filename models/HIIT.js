@@ -10,6 +10,7 @@ HIIT.init(
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
+            unique: true
         },
         date: {
             type: DataTypes.DATE,
@@ -35,7 +36,14 @@ HIIT.init(
         remarks: {
             type: DataTypes.BLOB,
             allowNull: false,
-        }
+        },
+        profile_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'profile',
+              key: 'id',
+            },
+        },
     },
     {
         sequelize,

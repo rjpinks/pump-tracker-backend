@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "date": "01/01/2023",
+        "activity": "squat",
+        "reps": 5,
+        "weight": 150,
+        "satisfaction": 4,
+        "remarks": "meow",
+        "profile_id": 1
+    },
+    {
+        "id": 2,
+        "date": "02/02/2023",
+        "activity": "deadlift",
+        "reps": 5,
+        "weight": 200,
+        "satisfaction": 3,
+        "remarks": "purr",
+        "profile_id": 2
+    }
+]

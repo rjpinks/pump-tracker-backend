@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "date": "10/10/2023",
+        "activity": "jogging",
+        "time": 35.00,
+        "distance": 3.5,
+        "satisfaction": 3,
+        "remarks": "cat's just can't run long distance",
+        "profile_id": 1
+    },
+    {
+        "id": 2,
+        "date": "11/11/2023",
+        "activity": "walking",
+        "time": 12.52,
+        "distance": 2.00,
+        "satisfaction": 4,
+        "remarks": "fun walk through the grass",
+        "profile_id": 2
+    }
+]

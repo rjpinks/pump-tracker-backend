@@ -10,6 +10,7 @@ Strength.init(
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
+            unique: true
         },
         date: {
             type: DataTypes.DATE,
