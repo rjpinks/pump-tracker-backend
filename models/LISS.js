@@ -35,7 +35,14 @@ LISS.init(
         remarks: {
             type: DataTypes.BLOB,
             allowNull: false,
-        }
+        },
+        profile_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'profile',
+              key: 'id',
+            },
+        },
     },
     {
         sequelize,

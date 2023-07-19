@@ -1,5 +1,5 @@
 TO DO:
-    - Set up Profile table
+    - ~~Set up Profile table~~
         - Add foriegn keys in each of the activities to assign ownership
     
     - Implement sessions
