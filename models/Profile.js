@@ -26,7 +26,14 @@ Profile.init(
             type: DataTypes.STRING,
             allowNull: false,
         }
-    }
+    },
+    {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'profile',
+      }
 )
 
 module.exports = Profile
