@@ -14,7 +14,7 @@ LISS.init(
         },
         date: {
             type: DataTypes.DATE,
-            default: Date.now,
+            defaultValue: Sequelize.NOW,
             allowNull: false,
         },
         activity: {
@@ -23,11 +23,11 @@ LISS.init(
         },
         time: {
             type: DataTypes.DECIMAL,
-            allowNull: false,
+            //allowNull: false,
         },
         distance: {
             type: DataTypes.DECIMAL,
-            allowNull: false,
+            //allowNull: false,
         },
         satisfaction: {
             type: DataTypes.INTEGER,

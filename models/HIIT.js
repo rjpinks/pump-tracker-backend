@@ -25,10 +25,6 @@ HIIT.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        time: {
-            type: DataTypes.DECIMAL,
-            allowNull: false,
-        },
         satisfaction: {
             type: DataTypes.INTEGER,
             allowNull: false,
