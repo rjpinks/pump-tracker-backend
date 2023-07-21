@@ -34,7 +34,7 @@ Strength.init(
             allowNull: false,
         },
         remarks: {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         profile_id: {
