@@ -40,4 +40,41 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  HIIT.update({
+    activity: req.body.activity,
+    weight: req.body.weight,
+    satisfaction: req.body.satisfaction,
+    remarks: req.body.remarks
+  },
+  {
+    where: {
+      id: req.params.id
+    }
+  }
+  )
+    .then((updatedHiit) => {
+      res.json(updatedHiit);
+  })
+    .catch((err) => res.json(err));
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const hiitData = await HIIT.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if (!hiitData) {
+      res.status(404).json({ message: "Can't delete what you can't touch 🥊" });
+    }
+
+    res.status(200).json(hiitData);
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
 module.exports = router;
