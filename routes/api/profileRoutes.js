@@ -30,20 +30,55 @@ router.post('/', async (req, res) => {
       password: req.body.password
     });
 
-    // req.session.save(() => {
-    //   req.session.user_id = userData.id;
-    //   req.session.logged_in = true;
+    req.session.save(() => {
+      req.session.user_id = profileData.id;
+      req.session.logged_in = true;
 
-    //   res.status(200).json(userData);
-    // });
-    res.status(200).json(profileData);
+      res.status(200).json(profileData);
+    });
 
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-/* login post call will be made here */
+router.post('/login', async (req, res) => {
+  try {
+    const profileData = await User.findOne({ where: { email: req.body.email } });
+
+    if (!profileData) {
+      res.status(404).json({ message: 'Incorrect email or password' });
+      return;
+    }
+
+    const validPassword = await profileData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(404).json({ message: 'Incorrect email or password' });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = profileData.id;
+      req.session.logged_in = true;
+
+      res.json({ user: profileData, message: 'You are now logged in!' });
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
 
 router.put('/:id', async (req, res) => {
   try {
@@ -52,9 +87,9 @@ router.put('/:id', async (req, res) => {
     if (!profileToUpdate) {
       res.status(404).json({ message: 'Account not found bro' });
     }
-      profileToUpdate.email = req.body.email;
-      profileToUpdate.username = req.body.username;
-      profileToUpdate.password = req.body.password;
+    profileToUpdate.email = req.body.email;
+    profileToUpdate.username = req.body.username;
+    profileToUpdate.password = req.body.password;
 
     // Save the changes to trigger the beforeUpdate hook
     await profileToUpdate.save();
