@@ -22,36 +22,23 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// router.post('/', async (req, res) => {
-//   try {
-//     const profileData = await Profile.create({
-//       email: req.body.email,
-//       username: req.body.username,
-//       password: req.body.password
-//     });
-
-//     req.session.save(() => {
-//       req.session.user_id = profileData.id;
-//       req.session.logged_in = true;
-
-//       res.status(200).json(profileData);
-//     });
-
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.post('/', async (req, res) => {
   try {
-    const newProfile = req.body;
-    // hash the password from 'req.body' and save to newProfile
-    newProfile.password = await bcrypt.hash(req.body.password, 10);
-    // create the newProfile with the hashed password and save to DB
-    const userData = await Profile.create(newProfile);
-    res.status(200).json(userData);
+    const profileData = await Profile.create({
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password
+    });
+
+    req.session.save(() => {
+      req.session.user_id = profileData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(profileData);
+    });
+
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 
