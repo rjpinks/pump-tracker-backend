@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const routes = require('./routes');
 const sequelize = require("./config/connection");
 const session = require('express-session')
@@ -22,12 +23,15 @@ const sess = {
   })
 };
 
+app.use(cors({ origin: 'http://localhost:3000' }));
+
 app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(routes)
+app.use(routes);
+
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
