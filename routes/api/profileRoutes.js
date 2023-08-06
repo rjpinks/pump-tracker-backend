@@ -47,14 +47,14 @@ router.post('/login', async (req, res) => {
     const profileData = await Profile.findOne({ where: { email: req.body.email } });
 
     if (!profileData) {
-      res.status(404).json({ message: 'Incorrect email or password' });
+      res.status(401).json({ message: 'Incorrect email or password' });
       return;
     }
 
     const validPassword = await profileData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res.status(404).json({ message: 'Incorrect email or password' });
+      res.status(401).json({ message: 'Incorrect password' });
       return;
     }
 
